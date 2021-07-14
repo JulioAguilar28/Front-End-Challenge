@@ -1,22 +1,27 @@
-import { getAccessorType } from 'typed-vuex'
-import * as departament from './departament'
+import {
+  getAccessorType,
+  getterTree,
+  mutationTree,
+  actionTree,
+} from 'typed-vuex'
 
 export const state = () => ({
-  counter: 0,
+  employees: [] as any[],
 })
 
-export const getters = {}
+export const getters = getterTree(state, {})
 
-export const mutations = {}
+export const mutations = mutationTree(state, {
+  addEmployee(state, employee: any) {
+    state.employees = [...state.employees, employee]
+  },
+})
 
-export const actions = {}
+export const actions = actionTree({ state, getters, mutations }, {})
 
 export const accessorType = getAccessorType({
   state,
   getters,
   mutations,
   actions,
-  modules: {
-    departament,
-  },
 })

@@ -2,7 +2,7 @@
   <form class="flex flex-col gap-2 p-5">
     <label class="flex shadow w-3/12 gap-3 p-2">
       <span>Name:</span>
-      <input type="text" class="bg-transparent outline-none" />
+      <input v-model="name" type="text" class="bg-transparent outline-none" />
     </label>
     <label class="flex justify-between shadow w-3/12 gap-3 p-2">
       <span>Employee type:</span>
@@ -11,8 +11,12 @@
         v-model="selectedOption"
         class="bg-transparent"
       >
-        <option v-for="option in options" :key="option" :value="option">
-          {{ option }}
+        <option
+          v-for="option in options"
+          :key="option.type"
+          :value="option.type"
+        >
+          {{ option.type }}
         </option>
       </select>
     </label>
@@ -26,20 +30,43 @@
   </form>
 </template>
 
-<script>
-import { defineComponent, ref } from '@nuxtjs/composition-api'
+<script lang="ts">
+import { defineComponent, ref, useStore } from '@nuxtjs/composition-api'
+import { Employee, Manager } from '~/models'
+import { accessorType } from '~/store'
+import { getEmployeesType, getEmployeeTypeByType } from '~/utils'
 
 export default defineComponent({
   setup() {
-    const options = ['Manager', 'QA Tester', 'Developer']
-    const selectedOption = ref(options[0])
+    const store = useStore<typeof accessorType>()
+    const options = getEmployeesType()
+    const selectedOption = ref('')
+    const name = ref('')
 
-    const onAddEmployee = () => {}
+    const onAddEmployee = () => {
+      let employeeToAdd
+
+      if (selectedOption.value === 'Manager') {
+        employeeToAdd = {
+          name: name.value,
+          type: getEmployeeTypeByType(selectedOption.value),
+          nodes: [],
+        } as Manager
+      } else {
+        employeeToAdd = {
+          name: name.value,
+          type: getEmployeeTypeByType(selectedOption.value),
+        } as Employee
+      }
+
+      store.commit('addEmployee', employeeToAdd)
+    }
 
     return {
       options,
       selectedOption,
       onAddEmployee,
+      name,
     }
   },
 })
