@@ -5,13 +5,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, onMounted, useStore } from '@nuxtjs/composition-api'
 import AddForm from '@/components/AddForm.vue'
+import { accessorType } from '~/store'
 
 export default defineComponent({
   components: { AddForm },
   layout: 'main',
-  setup() {},
+  setup() {
+    const store = useStore<typeof accessorType>()
+
+    onMounted(() => {
+      console.log(store.state.counter)
+    })
+  },
 })
 </script>
 
