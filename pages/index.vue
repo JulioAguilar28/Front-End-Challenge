@@ -16,7 +16,7 @@ export default defineComponent({
     const store = useStore<typeof accessorType>()
 
     onMounted(() => {
-      console.log(store.state.counter)
+      console.log(store.state)
     })
   },
 })

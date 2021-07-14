@@ -1,4 +1,5 @@
 import { getAccessorType } from 'typed-vuex'
+import * as departament from './departament'
 
 export const state = () => ({
   counter: 0,
@@ -15,4 +16,7 @@ export const accessorType = getAccessorType({
   getters,
   mutations,
   actions,
+  modules: {
+    departament,
+  },
 })
