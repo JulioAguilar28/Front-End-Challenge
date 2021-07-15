@@ -9,12 +9,12 @@
           bg-indigo-50
           shadow
           p-2
-          w-60
+          w-80
           mb-5
         "
       >
         <i :class="['fas', employeeIcon, 'mr-4']"></i>
-        <span class="text-lg mr-4">{{ employee.name }}</span>
+        <span class="text-lg mr-4">{{ employee.name }}({{ employee.id }})</span>
         <span
           >${{ employee.type.asignment }} <i class="fas fa-money-bill"></i
         ></span>

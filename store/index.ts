@@ -43,8 +43,9 @@ export const state = () => ({
       //   },
       // ],
     } as Manager,
+    total: 0,
   },
-  id: 0,
+  id: 1,
   showAddForm: true,
   userSelectedToAddEmployee: {} as Manager | null,
 })
