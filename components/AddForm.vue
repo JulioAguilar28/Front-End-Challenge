@@ -1,5 +1,5 @@
 <template>
-  <form class="flex flex-col gap-2 p-5">
+  <form class="flex flex-col gap-2">
     <label class="flex shadow w-3/12 gap-3 p-2">
       <span>Name:</span>
       <input v-model="name" type="text" class="bg-transparent outline-none" />

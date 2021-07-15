@@ -1,17 +1,23 @@
 import { EmployeeType } from '~/models'
 
+export const EMPLOYEE_TYPES = {
+  MANAGER: 'Manager',
+  DEVELOPER: 'Developer',
+  TESTER: 'Tester',
+}
+
 export function getEmployeesType(): EmployeeType[] {
   return [
     {
-      type: 'Manager',
+      type: EMPLOYEE_TYPES.MANAGER,
       asignment: 300,
     },
     {
-      type: 'Developer',
+      type: EMPLOYEE_TYPES.DEVELOPER,
       asignment: 1000,
     },
     {
-      type: 'Tester',
+      type: EMPLOYEE_TYPES.TESTER,
       asignment: 500,
     },
   ]

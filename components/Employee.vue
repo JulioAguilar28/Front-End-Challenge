@@ -1,0 +1,45 @@
+<template>
+  <div class="flex items-center justify-center bg-indigo-50 shadow p-2 w-52">
+    <i :class="['fas', employeeIcon, 'mr-4']"></i>
+    <span class="text-lg mr-4">{{ employee.name }}</span>
+    <span
+      >${{ employee.type.asignment }} <i class="fas fa-money-bill"></i
+    ></span>
+  </div>
+</template>
+
+<script lang="ts">
+import { computed, defineComponent } from '@nuxtjs/composition-api'
+import { EmployeeType } from '~/models'
+import { EMPLOYEE_TYPES } from '~/utils'
+
+export default defineComponent({
+  props: {
+    employee: {
+      type: Object,
+      default() {
+        return {
+          name: 'Julio',
+          type: {
+            type: EMPLOYEE_TYPES.MANAGER,
+            asignment: 0,
+          } as EmployeeType,
+        }
+      },
+    },
+  },
+  setup(props: any) {
+    const icons = new Map([
+      ['Manager', 'user-tie'],
+      ['Developer', 'laptop-code'],
+      ['Tester', 'vials'],
+    ])
+
+    const employeeIcon = computed(
+      () => `fa-${icons.get(props.employee.type.type)}`
+    )
+
+    return { employeeIcon }
+  },
+})
+</script>
