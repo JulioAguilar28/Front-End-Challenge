@@ -4,7 +4,7 @@ export interface EmployeeType {
 }
 
 export interface Employee {
-  id?: string
+  id?: number
   name: string
   type: EmployeeType
 }

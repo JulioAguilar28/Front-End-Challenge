@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto mt-16 main w-5/6 bg-gray-50 shadow p-5">
-    <AddForm v-if="!department.manager.name" class="mb-10" />
+    <AddForm v-if="state.showAddForm" class="mb-10" />
     <div v-if="department.manager.name">
       <Employee :employee="department.manager" />
     </div>
@@ -21,7 +21,8 @@ export default defineComponent({
     const department = ref(store.state.department)
 
     return {
-      department: department.value,
+      department,
+      state: store.state,
     }
   },
 })
