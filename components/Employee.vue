@@ -30,9 +30,9 @@ export default defineComponent({
   },
   setup(props: any) {
     const icons = new Map([
-      ['Manager', 'user-tie'],
-      ['Developer', 'laptop-code'],
-      ['Tester', 'vials'],
+      [EMPLOYEE_TYPES.MANAGER, 'user-tie'],
+      [EMPLOYEE_TYPES.DEVELOPER, 'laptop-code'],
+      [EMPLOYEE_TYPES.TESTER, 'vials'],
     ])
 
     const employeeIcon = computed(

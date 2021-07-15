@@ -24,7 +24,7 @@
     <button
       type="button"
       class="w-44 bg-gray-200 p-2 shadow"
-      @click.prevent="onAddEmployee()"
+      @click.prevent="onInitDepartment()"
     >
       Create Department
     </button>
@@ -44,7 +44,7 @@ export default defineComponent({
     const selectedOption = ref('Manager')
     const name = ref('')
 
-    const onAddEmployee = () => {
+    const onInitDepartment = () => {
       const employeeToAdd = {
         name: name.value,
         type: getEmployeeTypeByType(selectedOption.value),
@@ -69,7 +69,7 @@ export default defineComponent({
     return {
       options,
       selectedOption,
-      onAddEmployee,
+      onInitDepartment,
       name,
     }
   },
