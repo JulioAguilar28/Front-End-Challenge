@@ -10,5 +10,5 @@ export interface Employee {
 }
 
 export interface Manager extends Employee {
-  nodes: []
+  nodes: any[]
 }

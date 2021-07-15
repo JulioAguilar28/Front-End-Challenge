@@ -1,10 +1,22 @@
 <template>
-  <div class="flex items-center justify-center bg-indigo-50 shadow p-2 w-52">
-    <i :class="['fas', employeeIcon, 'mr-4']"></i>
-    <span class="text-lg mr-4">{{ employee.name }}</span>
-    <span
-      >${{ employee.type.asignment }} <i class="fas fa-money-bill"></i
-    ></span>
+  <div>
+    <div
+      class="flex items-center justify-center bg-indigo-50 shadow p-2 w-60 mb-5"
+    >
+      <i :class="['fas', employeeIcon, 'mr-4']"></i>
+      <span class="text-lg mr-4">{{ employee.name }}</span>
+      <span
+        >${{ employee.type.asignment }} <i class="fas fa-money-bill"></i
+      ></span>
+    </div>
+
+    <div v-if="employee.nodes" class="nodes ml-12">
+      <Employee
+        v-for="employeeNode in employee.nodes"
+        :key="employeeNode.id"
+        :employee="employeeNode"
+      />
+    </div>
   </div>
 </template>
 
@@ -14,6 +26,7 @@ import { EmployeeType } from '~/models'
 import { EMPLOYEE_TYPES } from '~/utils'
 
 export default defineComponent({
+  name: 'Employee',
   props: {
     employee: {
       type: Object,
