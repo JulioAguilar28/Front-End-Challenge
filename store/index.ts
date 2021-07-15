@@ -4,16 +4,19 @@ import {
   mutationTree,
   actionTree,
 } from 'typed-vuex'
+import { Manager } from '~/models'
 
 export const state = () => ({
-  employees: [] as any[],
+  department: {
+    manager: {} as Manager,
+  },
 })
 
 export const getters = getterTree(state, {})
 
 export const mutations = mutationTree(state, {
-  addEmployee(state, employee: any) {
-    state.employees = [...state.employees, employee]
+  initDepartment(state, manager: Manager) {
+    state.department.manager = manager
   },
 })
 

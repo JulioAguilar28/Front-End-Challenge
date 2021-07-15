@@ -15,6 +15,7 @@
           v-for="option in options"
           :key="option.type"
           :value="option.type"
+          :disabled="option.type !== 'Manager'"
         >
           {{ option.type }}
         </option>
@@ -22,17 +23,17 @@
     </label>
     <button
       type="button"
-      class="w-32 bg-gray-200 p-2 shadow"
+      class="w-44 bg-gray-200 p-2 shadow"
       @click.prevent="onAddEmployee()"
     >
-      Add
+      Create Department
     </button>
   </form>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, useStore } from '@nuxtjs/composition-api'
-import { Employee, Manager } from '~/models'
+import { Manager } from '~/models'
 import { accessorType } from '~/store'
 import { getEmployeesType, getEmployeeTypeByType } from '~/utils'
 
@@ -40,26 +41,29 @@ export default defineComponent({
   setup() {
     const store = useStore<typeof accessorType>()
     const options = getEmployeesType()
-    const selectedOption = ref('')
+    const selectedOption = ref('Manager')
     const name = ref('')
 
     const onAddEmployee = () => {
-      let employeeToAdd
+      const employeeToAdd = {
+        name: name.value,
+        type: getEmployeeTypeByType(selectedOption.value),
+        nodes: [],
+      } as Manager
 
-      if (selectedOption.value === 'Manager') {
-        employeeToAdd = {
-          name: name.value,
-          type: getEmployeeTypeByType(selectedOption.value),
-          nodes: [],
-        } as Manager
-      } else {
-        employeeToAdd = {
-          name: name.value,
-          type: getEmployeeTypeByType(selectedOption.value),
-        } as Employee
-      }
-
-      store.commit('addEmployee', employeeToAdd)
+      // if (selectedOption.value === 'Manager') {
+      //   employeeToAdd = {
+      //     name: name.value,
+      //     type: getEmployeeTypeByType(selectedOption.value),
+      //     nodes: [],
+      //   } as Manager
+      // } else {
+      //   employeeToAdd = {
+      //     name: name.value,
+      //     type: getEmployeeTypeByType(selectedOption.value),
+      //   } as Employee
+      // }
+      store.app.$accessor.initDepartment(employeeToAdd)
     }
 
     return {
