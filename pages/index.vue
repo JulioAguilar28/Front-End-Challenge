@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto mt-16 main w-5/6 bg-gray-50 shadow p-5">
+  <div class="mx-auto mt-8 w-5/6 main bg-gray-50 shadow p-5">
     <AddForm v-if="state.showAddForm" class="mb-10" />
     <div v-if="department.manager.name">
       <Employee :employee="department.manager" />
@@ -30,6 +30,6 @@ export default defineComponent({
 
 <style scoped>
 .main {
-  height: 600px;
+  min-height: 500px;
 }
 </style>
