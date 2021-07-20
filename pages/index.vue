@@ -47,7 +47,7 @@ export default defineComponent({
 
     watch(state.department, getAmountHandler)
 
-    return { state }
+    return { state, getAmountHandler }
   },
 })
 
