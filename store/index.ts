@@ -9,6 +9,7 @@ import { Manager } from '~/models'
 export const state = () => ({
   department: {
     manager: {
+      name: '',
       // id: 1,
       // name: 'Manager A',
       // type: {
@@ -50,7 +51,9 @@ export const state = () => ({
   userSelectedToAddEmployee: {} as Manager | null,
 })
 
-export const getters = getterTree(state, {})
+export const getters = getterTree(state, {
+  isThereMainManager: (state) => state.department.manager.name !== '',
+})
 
 export const mutations = mutationTree(state, {
   setInitDepartment(state, manager: any) {
